@@ -1,0 +1,288 @@
+ 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Dashboard</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    .header {
+      background-color: #333;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      margin: 0; /* Remove margin */
+    }
+    .user-info {
+      display: flex;
+      align-items: center;
+    }
+    .user-img {
+      width: 50px;
+      height: 50px;
+      background-color: #fff;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+    .user-name {
+      font-weight: bold;
+    }
+    .settings {
+      display: flex;
+      align-items: center;
+    }
+    .user-details,.change-password-form {
+      display: none;
+      position: absolute;
+      background-color: #00ae7c;
+      color: #fff;
+      padding: 10px;
+      right: 10px;
+      top: 60px;
+      z-index: 1;
+    }
+    aside {
+      background-color: #3c3f42;
+      padding: 20px;
+      width: 200px; /* Set the width */
+      position: fixed; /* Set position to fixed */
+      top: 53px; /* Set top position to 0 */
+      bottom: 44px; /* Set bottom position to 0 */
+    }
+    .footer {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 10px;
+      margin: 0; /* Remove margin */
+      margin-top: auto; /* Push the footer to the bottom */
+    }
+    .content {
+      flex: 1;
+    }
+
+    .notification {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      padding: 10px;
+      background-color: #007bff;
+      color: #fff;
+      border-radius: 5px;
+    }
+    
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div>User Dashboard</div>
+
+    <div class="user-info">
+      <!-- Profile button  starts-->
+      <button id="profileBtn" class="btn btn-light mr-3"><i class="fas fa-user"></i></button>
+   
+  <!-- Profile button ends -->
+
+
+
+<!-------notification button starts-------->
+    
+      <button id="notificationBtn" class="btn btn-light mr-3"><i class="fas fa-bell"></i></button>
+    
+<!-------notification button  ends -------->
+
+  <!-- Settings button start-->
+      <div class="settings mr-3">
+        <button id="settingsBtn" class="btn btn-light"><i class="fas fa-cog"></i></button>
+      </div>
+ <!-- Settings button end -->
+
+
+ <!-------Logout button starts--------->
+     <div> 
+      <button id="logoutBtn" class="btn btn-light mr-3"><i class="fas fa-sign-out-alt"   onclick="logout()"></i> Logout</button>
+    </div>
+    <!-------Logout button starts--------->
+
+
+    </div>
+  </header>
+
+  <!-- User Details Section -->
+  <div id="userDetails" class="user-details">
+    <div class="popup"  id="profilePopup" ></div>  
+      <div class="user-img"></div>
+
+      <p><strong>Name:</strong> John Doe</p>
+      <p><strong>Email:</strong> john@example.com</p>
+      <p><strong>Mobile:</strong> +1234567890</p>
+
+    </div>
+
+<!-- Overlay -->
+<div class="overlay" id="overlay"></div>
+
+ 
+
+  <!-- Change Password Form -->
+  <div id="changePasswordForm" class="change-password-form">
+    <form>
+      <div class="form-group">
+        <label for="currentPassword">Current Password</label>
+        <input type="password" class="form-control" id="currentPassword" placeholder="Enter current password">
+        <div class="invalid-feedback">
+          Please enter your current password.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="newPassword">New Password</label>
+        <input type="password" class="form-control" id="newPassword" placeholder="Enter new password">
+        <div class="invalid-feedback">
+          Please enter a new password.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="confirmNewPassword">Confirm New Password</label>
+        <input type="password" class="form-control" id="confirmNewPassword" placeholder="Confirm new password">
+        <div class="invalid-feedback">
+          Please confirm your new password.
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary">Change Password</button>
+      <div class="mt-2" id="formMessage" style="display: none;"></div>
+    </form>
+  </div>
+
+ 
+  <!-- Content -->
+  <div class="content">
+    <!-- Card Section -->
+    <div class="container mt-3">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">See the Notes</h5>
+              <p class="card-text">View all the notes available.</p>
+              <a href="user2.html" class="btn btn-primary">Click Here</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Upload Your Notes</h5>
+              <p class="card-text">Share your own notes with others.</p>
+              <a href="user3.html" class="btn btn-primary" >Click Here</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Aside -->
+  <aside hidden>
+
+    
+    <!-- Content -->
+
+
+  </aside>
+
+  <!-- Footer -->
+  <footer class="footer">
+    All Rights Reserved to Resource Sharing Application
+  </footer>
+
+  <!-- Bootstrap JS and Font Awesome JS (optional) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5."> </script>
+  
+  
+  <!-- Bootstrap JS and Font Awesome JS (optional) -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+
+  <script>
+    function logout() {
+      // Redirect to the home page
+      alert("Logging out...");
+      window.location.href = "index.html";
+   
+    }
+  </script>
+
+  
+  <script>
+    $(document).ready(function() {
+      $("#profileBtn").click(function() {
+        $("#userDetails").toggle();
+      });
+ 
+      $("#settingsBtn").click(function() {
+        // Toggle visibility of change password form
+        $("#changePasswordForm").toggle();
+      });
+ 
+      
+
+
+
+
+      // Add form submission handling
+      $("#passwordForm").submit(function(event) {
+        event.preventDefault(); // Prevent default form submission
+
+        // Validate form
+        if (this.checkValidity() === false) {
+          event.stopPropagation(); // Stop event propagation if form is invalid
+          return;
+        }
+
+        // Show success message
+        $("#formMessage").html("<div class='alert alert-success' role='alert'>Password changed successfully!</div>").show();
+
+        // Reset form
+        this.reset();
+      });
+    });
+  </script>
+
+  <script>
+    document.getElementById("notificationBtn").addEventListener("click", function() {
+      // Create a notification element
+      var notification = document.createElement("div");
+      notification.classList.add("notification");
+      notification.innerHTML = "You have a new notification!";
+      
+      // Append the notification to the body
+      document.body.appendChild(notification);
+      
+      // Remove the notification after a certain period of time (e.g., 5 seconds)
+      setTimeout(function() {
+        notification.remove();
+      }, 5000);
+    });
+    </script>
+    
+   
+    

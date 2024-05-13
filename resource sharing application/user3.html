@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Notes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            font-weight: bold;
+        }
+        select, input[type="file"], input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type="file"] {
+            cursor: pointer;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<button class="btn btn-light mr-2" onclick="window.history.back();"><i class="fa-solid fa-arrow-left"></i> Back</button>
+<body>
+    <div class="container">
+        <h2>Upload Notes</h2>
+        <form action="upload_notes.php" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="department">Select Department:</label>
+                <select id="department" name="department" onchange="updateSubjects()">
+                    <option value="CSE">Computer Science Engineering (CSE)</option>
+                    <option value="Mech">Mechanical Engineering (Mech)</option>
+                    <option value="Civil">Civil Engineering (Civil)</option>
+                    <option value="E&TC">Electronics & Telecommunication Engineering (E&TC)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="semester">Select Semester:</label>
+                <select id="semester" name="semester" onchange="updateSubjects()">
+                    <option value="1">Semester 1</option>
+                    <option value="2">Semester 2</option>
+                    <option value="3">Semester 3</option>
+                    <option value="4">Semester 4</option>
+                    <option value="5">Semester 5</option>
+                    <option value="6">Semester 6</option>
+                    <option value="7">Semester 7</option>
+                    <option value="8">Semester 8</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="subject">Select Subject:</label>
+                <select id="subject" name="subject">
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="notes">Choose Notes File:</label>
+                <input type="file" id="notes" name="notes" accept=".pdf,.doc,.docx">
+            </div>
+            <input type="submit" value="Upload Notes">
+        </form>
+    </div>
+
+    <script>
+        function updateSubjects() {
+            var department = document.getElementById("department").value;
+            var semester = document.getElementById("semester").value;
+            var subjectSelect = document.getElementById("subject");
+            subjectSelect.innerHTML = ""; // Clear existing options
+            
+            var subjects = [];
+            
+            if (department === "CSE") {
+                subjects = getCSESubjects(semester);
+            } else if (department === "Mech") {
+                subjects = getMechSubjects(semester);
+            } else if (department === "Civil") {
+                subjects = getCivilSubjects(semester);
+            } else if (department === "E&TC") {
+                subjects = getEtcSubjects(semester);
+            }
+            
+            subjects.forEach(function(subject) {
+                var option = document.createElement("option");
+                option.text = subject;
+                option.value = subject;
+                subjectSelect.add(option);
+            });
+        }
+        
+        function getCSESubjects(semester) {
+            switch(semester) {
+                case "1":
+                    return ["Mathematics-I", "Physics-I", "Chemistry", "Introduction to Programming", "Engineering Graphics"];
+                case "2":
+                    return ["Mathematics-II", "Physics-II", "Environmental Science", "Programming in C", "Communication Skills"];
+                // Add cases for other semesters
+                default:
+                    return [];
+            }
+        }
+        
+        function getMechSubjects(semester) {
+            switch(semester) {
+                case "1":
+                    return ["Mathematics-I", "Physics-I", "Chemistry", "Engineering Mechanics", "Basic Electrical Engineering"];
+                case "2":
+                    return ["Mathematics-II", "Physics-II", "Environmental Science", "Engineering Thermodynamics", "Engineering Drawing"];
+                // Add cases for other semesters
+                default:
+                    return [];
+            }
+        }
+        
+        function getCivilSubjects(semester) {
+            switch(semester) {
+                case "1":
+                    return ["Mathematics-I", "Physics-I", "Chemistry", "Engineering Mechanics", "Basic Electrical Engineering"];
+                case "2":
+                    return ["Mathematics-II", "Physics-II", "Environmental Science", "Building Materials", "Engineering Drawing"];
+                // Add cases for other semesters
+                default:
+                    return [];
+            }
+        }
+        
+        function getEtcSubjects(semester) {
+            switch(semester) {
+                case "1":
+                    return ["Mathematics-I", "Physics-I", "Chemistry", "Basic Electronics", "Engineering Mechanics"];
+                case "2":
+                    return ["Mathematics-II", "Physics-II", "Environmental Science", "Electrical Circuits", "Communication Skills"];
+                // Add cases for other semesters
+                default:
+                    return [];
+            }
+        }
+    </script>
+</body>
+</html>

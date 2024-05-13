@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Card Section</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  <style>
+    .card {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .card-body {
+      flex: 1;
+    }
+
+    .card-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-dark bg-primary">
+    <div class="container">
+      <span class="navbar-brand mb-0 h1">Study Materials Notes</span>
+      <a class="btn btn-light" href="user.html" role="button"><i class="fas fa-home"></i> Home</a>
+    </div>
+  </nav>
+  <div class="container">
+    <div class="row mt-5">
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">PDF Notes</h5>
+            <p class="card-text">Access PDF notes for your study material.</p>
+          </div>
+          <div class="card-footer">
+            <a href="departmentpdf.html" class="btn btn-primary"><i class="fas fa-file-pdf"></i> View PDFs</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Video Tutorials</h5>
+            <p class="card-text">Watch video tutorials for better understanding.</p>
+          </div>
+          <div class="card-footer">
+            <a href="departmentvedio.html" class="btn btn-primary"><i class="fas fa-video"></i> Watch Videos</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">MCQ Tests</h5>
+            <p class="card-text">Take multiple-choice quizzes to test your knowledge.</p>
+          </div>
+          <div class="card-footer">
+            <a href="departmentmcq.html" class="btn btn-primary"><i class="fas fa-question"></i> Take MCQ Test</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
